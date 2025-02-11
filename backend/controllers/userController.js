@@ -8,4 +8,4 @@ const authUser = (req, res)=>{
 
 }
 
-export default {authUser}
+export default authUser
