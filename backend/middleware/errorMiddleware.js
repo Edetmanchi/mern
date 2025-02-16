@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 
 const notFound = (req, res, next)=>{
     const error = new Error (` Not Found -${req.originalUrl}`)
@@ -6,9 +6,10 @@ const notFound = (req, res, next)=>{
     next(error);
 }
 
+
 const errorHandlier = (err, req, res, next)=>{
-    let statusCode = res.statusCode === 200 ? 500 : statusCode;
-    let message = err.message 
+    let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+    let message = err.message; 
 
     // check for cast error in mongoose
     if (err.name === 'CastError' && err.kind === 'ObjectId'){
@@ -16,7 +17,7 @@ const errorHandlier = (err, req, res, next)=>{
         message = 'Resource not found'
     }
 
-    res.status(statusCode). json({
+    res.status(statusCode).json({
         message,
         stack: process.env.NODE_ENV === 'production' ? null : err.stack
     });
