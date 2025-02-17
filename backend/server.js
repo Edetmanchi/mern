@@ -20,6 +20,7 @@ app.get('/', (res, req)=> res.send("server is ready"));
 // midlewares
 app.use(notFound);
 app.use(errorHandlier);
+// app.use(express.json())
 
 app.listen(port, ()=> {
     console.log(`my server started at port ${port}`)
