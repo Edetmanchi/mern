@@ -12,6 +12,12 @@ const port = process.env.PORT || 5000
 connectDB()
 
 const app = express();
+// middle ware json parser(to send filesin json format with the model created)
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+
+
+
 // anything connected to api users will be coming from the userRoutes()
 app.use('/api/users', userRoutes)
 
@@ -20,7 +26,6 @@ app.get('/', (res, req)=> res.send("server is ready"));
 // midlewares
 app.use(notFound);
 app.use(errorHandlier);
-// app.use(express.json())
 
 app.listen(port, ()=> {
     console.log(`my server started at port ${port}`)

@@ -20,8 +20,10 @@ const userSchema = mongoose.Schema({
     timestamps: true
 }
 )
+
 // middleware and Regex function to hash the password
 userSchema.pre('save', async function (next){
+    // if password has not ben modified or changed in anyway
     if(!this.isModified('password')){
         next()
     }
@@ -30,6 +32,12 @@ userSchema.pre('save', async function (next){
         this.password = await bcrypt.hash(this.password, salt)
     }
 })
+
+
+// checking for passord match for tjhe auth and register routes
+userSchema.methods.matchPassword = async function (enterPassword){
+    return await bcrypt.compare(enterPassword, this.password)
+}
 
 const User = mongoose.model('User', userSchema)
 

@@ -1,4 +1,4 @@
-// import mongoose from "mongoose";
+import mongoose from "mongoose";
 
 const notFound = (req, res, next)=>{
     const error = new Error (` Not Found -${req.originalUrl}`)
