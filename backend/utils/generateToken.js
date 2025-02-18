@@ -5,9 +5,14 @@ const generateToken = (res, userId)=>{
         expiresIn: '20d',    
     })
     // saving the token in a cookie
-    res.cookie('res', token, {
+    res.cookie('jwt', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV !== 'development'
+        secure: process.env.NODE_ENV !== 'development',
+        sameSite: 'strict',
+        // when does it expires (can choose any expiration date)
+        maxAge: 30 * 24 * 60 * 60 * 1000,
     })
 
 }
+
+export default generateToken

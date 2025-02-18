@@ -1,4 +1,5 @@
 import asyncHandler from 'express-async-handler'
+import generateToken from '../utils/generateToken.js'
 import User from '../models/userModel.js'
 
 
@@ -28,8 +29,6 @@ const authUser = asyncHandler(async (req, res)=>{
 
 
 
-
-
 // @desc Register Users 
 // route POST/ api/users
 // access public
@@ -50,6 +49,8 @@ const registerUser = asyncHandler(async (req, res)=>{
 
     // when user has been successfully created
     if(user){
+        // generate token and store in http only cokkie before precedding 
+        generateToken(res, user._Id)
         res.status(201).json({
             _id: user._id,
             name: user.name,
@@ -66,12 +67,18 @@ const registerUser = asyncHandler(async (req, res)=>{
     // res.status(200).json({message: 'Register User'})
 })
 
+
+
 // @desc Logout users
 // route POST/ api/users/logout
 // access public
 const logoutUser = asyncHandler(async (req, res)=>{
-    res.status(200).json({message: 'Logout user'})
+   destroyCookie(res)
+   
+    res.status(200).json({message: 'User Logged out'})
 })
+
+
 
 
 // @desc Get users Profile
