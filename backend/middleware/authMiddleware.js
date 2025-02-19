@@ -3,6 +3,12 @@ import asyncHandler from 'express-async-handler'
 import User from '../models/userModel'
 
 
+
+
+
+
+
+
 const protectRoute= asyncHandler( async(req, res, next)=>{
     let token = req.cookie.jwt;
 
