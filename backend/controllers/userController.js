@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import generateToken from '../utils/generateToken.js'
 import User from '../models/userModel.js'
+import destroyCookie from '../utils/destroyCookie.js'
 
 
 // @desc Auth user/set token
@@ -74,7 +75,6 @@ const registerUser = asyncHandler(async (req, res)=>{
 // access public
 const logoutUser = asyncHandler(async (req, res)=>{
    destroyCookie(res)
-   
     res.status(200).json({message: 'User Logged out'})
 })
 

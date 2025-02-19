@@ -2,6 +2,7 @@ import express from "express"
 import userRoutes from './routes/userRoutes.js'
 import { notFound, errorHandlier } from "./middleware/errorMiddleware.js"
 import connectDB from './config/db.js'
+import cookieParser from "cookie-parser"
 
 // to use tokens from the env file
 import dotenv from 'dotenv';
@@ -16,7 +17,7 @@ const app = express();
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-
+app.use(cookieParser())
 
 // anything connected to api users will be coming from the userRoutes()
 app.use('/api/users', userRoutes)
