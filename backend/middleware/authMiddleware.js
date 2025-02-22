@@ -1,16 +1,10 @@
 import jwt from 'jsonwebtoken'
 import asyncHandler from 'express-async-handler'
-import User from '../models/userModel'
+import User from '../models/userModel.js'
 
 
-
-
-
-
-
-
-const protectRoute= asyncHandler( async(req, res, next)=>{
-    let token = req.cookie.jwt;
+const protectRoute = asyncHandler( async(req, res, next)=>{
+    let token = req.cookies.jwt;
 
     if(token){
         try {
