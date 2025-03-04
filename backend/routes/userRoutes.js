@@ -9,7 +9,6 @@ import {
 import protectRoute from '../middleware/authMiddleware.js'
 
 
-
 const router = express.Router()
 
 
