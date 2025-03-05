@@ -16,9 +16,9 @@ const userSchema = mongoose.Schema({
         required : true,
     }
 },
-{
-    timestamps: true
-}
+    {
+        timestamps: true
+    }
 )
 
 // middleware and Regex function to hash the password

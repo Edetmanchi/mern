@@ -13,6 +13,7 @@ const port = process.env.PORT || 5000
 connectDB()
 
 const app = express();
+
 // middle ware json parser(to send filesin json format with the model created)
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))

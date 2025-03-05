@@ -32,10 +32,9 @@ const authUser = asyncHandler(async (req, res)=>{
 
 // @desc Register Users 
 // route POST/ api/users
-// access public
-const registerUser = asyncHandler(async (req, res)=>{
+ const registerUser = asyncHandler(async (req, res)=>{
     const {name, email, password} = req.body;
-
+    console.log(req.body)
     // from database model to chck if user exist  
     const userExists = await User.findOne({email})
     if (userExists){
